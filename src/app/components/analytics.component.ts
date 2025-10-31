@@ -3,23 +3,23 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AnalyticsService } from '../services/analytics.service';
 
-@Component({
+/*@Component({
   selector: 'app-analytics',
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
     <div class="card boss-card">
       <h2>EXAMPLE 3: ADVANCED - Effects with untracked() and Cleanup</h2>
-      
+
       <div class="boss-badge">
         <span class="badge">ADVANCED LEVEL</span>
       </div>
-      
+
       <div class="controls">
         <div class="control-group">
           <label>
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               [checked]="analyticsService.enableLogging()"
               (change)="analyticsService.toggleLogging()"
             />
@@ -27,14 +27,14 @@ import { AnalyticsService } from '../services/analytics.service';
             <span class="hint">(untracked in logging effect)</span>
           </label>
         </div>
-        
+
         <div class="control-group">
           <label>
             <strong>Batch Size:</strong>
-            <input 
-              type="range" 
-              min="1" 
-              max="10" 
+            <input
+              type="range"
+              min="1"
+              max="10"
               [value]="analyticsService.batchSize()"
               (input)="onBatchSizeChange($event)"
             />
@@ -42,11 +42,11 @@ import { AnalyticsService } from '../services/analytics.service';
             <span class="hint">(untracked, won't retrigger effect)</span>
           </label>
         </div>
-        
+
         <div class="control-group">
           <label>
             <strong>Auto-save Interval (ms):</strong>
-            <select 
+            <select
               [value]="analyticsService.autoSaveInterval()"
               (change)="onIntervalChange($event)"
             >
@@ -59,7 +59,7 @@ import { AnalyticsService } from '../services/analytics.service';
           </label>
         </div>
       </div>
-      
+
       <div class="actions">
         <button (click)="trackRandomEvent()" class="primary-btn">
           Track Random Event
@@ -71,7 +71,7 @@ import { AnalyticsService } from '../services/analytics.service';
           Clear Events
         </button>
       </div>
-      
+
       <div class="events-section">
         <h3>Tracked Events ({{ analyticsService.events().length }})</h3>
         <div class="events-list">
@@ -86,10 +86,10 @@ import { AnalyticsService } from '../services/analytics.service';
           }
         </div>
       </div>
-      
+
       <div class="explanation boss-explanation">
         <h4>ADVANCED Concepts:</h4>
-        
+
         <div class="concept">
           <h5>1. untracked() in Effects</h5>
           <ul>
@@ -99,7 +99,7 @@ import { AnalyticsService } from '../services/analytics.service';
             <li><strong>Example in code</strong>: enableLogging is read with untracked() in logging effect</li>
           </ul>
         </div>
-        
+
         <div class="concept">
           <h5>2. Manual Cleanup in Effects</h5>
           <ul>
@@ -109,7 +109,7 @@ import { AnalyticsService } from '../services/analytics.service';
             <li><strong>Example in code</strong>: setInterval is canceled in cleanup</li>
           </ul>
         </div>
-        
+
         <div class="concept">
           <h5>3. Best Practices</h5>
           <ul>
@@ -119,7 +119,7 @@ import { AnalyticsService } from '../services/analytics.service';
             <li>Avoid infinite loops by not modifying signals you're observing</li>
           </ul>
         </div>
-        
+
         <div class="live-demo">
           <h5>LIVE DEMO</h5>
           <p>Open the browser console to see:</p>
@@ -141,17 +141,17 @@ import { AnalyticsService } from '../services/analytics.service';
       margin: 20px 0;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    
+
     .boss-card {
       border: 3px solid #FF6B6B;
       background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
     }
-    
+
     .boss-badge {
       text-align: center;
       margin-bottom: 20px;
     }
-    
+
     .badge {
       background: linear-gradient(135deg, #FF6B6B, #FF8E53);
       color: white;
@@ -161,7 +161,7 @@ import { AnalyticsService } from '../services/analytics.service';
       font-size: 14px;
       box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
     }
-    
+
     .controls {
       background: white;
       padding: 20px;
@@ -169,38 +169,38 @@ import { AnalyticsService } from '../services/analytics.service';
       margin: 20px 0;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-    
+
     .control-group {
       margin: 15px 0;
       padding: 15px;
       background: #f9f9f9;
       border-radius: 4px;
     }
-    
+
     .control-group label {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
     }
-    
+
     .hint {
       font-size: 12px;
       color: #FF6B6B;
       font-style: italic;
     }
-    
+
     input[type="range"] {
       flex: 1;
       min-width: 150px;
     }
-    
+
     input[type="checkbox"] {
       width: 20px;
       height: 20px;
       cursor: pointer;
     }
-    
+
     select {
       padding: 8px;
       border: 2px solid #ddd;
@@ -208,7 +208,7 @@ import { AnalyticsService } from '../services/analytics.service';
       background: white;
       cursor: pointer;
     }
-    
+
     .value {
       background: #FF6B6B;
       color: white;
@@ -218,7 +218,7 @@ import { AnalyticsService } from '../services/analytics.service';
       min-width: 30px;
       text-align: center;
     }
-    
+
     .actions {
       display: flex;
       gap: 10px;
@@ -226,7 +226,7 @@ import { AnalyticsService } from '../services/analytics.service';
       margin: 20px 0;
       flex-wrap: wrap;
     }
-    
+
     button {
       padding: 12px 24px;
       border: none;
@@ -236,52 +236,52 @@ import { AnalyticsService } from '../services/analytics.service';
       font-size: 14px;
       transition: all 0.3s ease;
     }
-    
+
     .primary-btn {
       background: #FF6B6B;
       color: white;
     }
-    
+
     .primary-btn:hover {
       background: #FF5252;
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
     }
-    
+
     .secondary-btn {
       background: #4ECDC4;
       color: white;
     }
-    
+
     .secondary-btn:hover {
       background: #3DBDB4;
     }
-    
+
     .danger-btn {
       background: #95a5a6;
       color: white;
     }
-    
+
     .danger-btn:hover {
       background: #7f8c8d;
     }
-    
+
     .events-section {
       margin: 20px 0;
     }
-    
+
     .events-section h3 {
       color: #FF6B6B;
       border-bottom: 2px solid #FF6B6B;
       padding-bottom: 10px;
     }
-    
+
     .events-list {
       max-height: 300px;
       overflow-y: auto;
       margin-top: 15px;
     }
-    
+
     .event-item {
       display: flex;
       gap: 10px;
@@ -292,66 +292,66 @@ import { AnalyticsService } from '../services/analytics.service';
       border-radius: 4px;
       font-size: 14px;
     }
-    
+
     .event-type {
       font-weight: bold;
       color: #FF6B6B;
       min-width: 120px;
     }
-    
+
     .event-time {
       color: #888;
       min-width: 80px;
     }
-    
+
     .event-data {
       flex: 1;
       color: #555;
       font-family: monospace;
       font-size: 12px;
     }
-    
+
     .empty-state {
       text-align: center;
       padding: 40px;
       color: #888;
     }
-    
+
     .boss-explanation {
       background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
       border-left: 4px solid #FF6B6B;
       padding: 20px;
       margin-top: 20px;
     }
-    
+
     .boss-explanation h4 {
       color: #FF6B6B;
       margin-top: 0;
       font-size: 1.3em;
     }
-    
+
     .concept {
       background: white;
       padding: 15px;
       border-radius: 4px;
       margin: 15px 0;
     }
-    
+
     .concept h5 {
       color: #FF6B6B;
       margin-top: 0;
     }
-    
+
     .concept ul {
       margin: 10px 0;
       padding-left: 20px;
     }
-    
+
     .concept li {
       margin: 8px 0;
       line-height: 1.6;
     }
-    
+
     .concept code {
       background: #f5f5f5;
       padding: 2px 6px;
@@ -359,7 +359,7 @@ import { AnalyticsService } from '../services/analytics.service';
       font-family: monospace;
       color: #FF6B6B;
     }
-    
+
     .live-demo {
       background: #fffacd;
       padding: 15px;
@@ -367,7 +367,7 @@ import { AnalyticsService } from '../services/analytics.service';
       border: 2px dashed #FFD700;
       margin-top: 15px;
     }
-    
+
     .live-demo h5 {
       color: #FF6B6B;
       margin-top: 0;
@@ -376,7 +376,7 @@ import { AnalyticsService } from '../services/analytics.service';
 })
 export class AnalyticsComponent implements OnInit, OnDestroy {
   analyticsService = inject(AnalyticsService);
-  
+
   #eventTypes = [
     'page_view',
     'button_click',
@@ -384,25 +384,25 @@ export class AnalyticsComponent implements OnInit, OnDestroy {
     'api_call',
     'user_action'
   ];
-  
+
   ngOnInit(): void {
     console.log('AnalyticsComponent initialized - check the console!');
   }
-  
+
   ngOnDestroy(): void {
     console.log('AnalyticsComponent destroyed');
   }
-  
+
   trackRandomEvent(): void {
     const randomType = this.#eventTypes[Math.floor(Math.random() * this.#eventTypes.length)];
     const randomData = {
       value: Math.floor(Math.random() * 100),
       source: 'manual'
     };
-    
+
     this.analyticsService.trackEvent(randomType, randomData);
   }
-  
+
   trackMultipleEvents(): void {
     for (let i = 0; i < 3; i++) {
       setTimeout(() => {
@@ -410,14 +410,14 @@ export class AnalyticsComponent implements OnInit, OnDestroy {
       }, i * 300);
     }
   }
-  
+
   onBatchSizeChange(event: Event): void {
     const value = parseInt((event.target as HTMLInputElement).value);
     this.analyticsService.setBatchSize(value);
   }
-  
+
   onIntervalChange(event: Event): void {
     const value = parseInt((event.target as HTMLSelectElement).value);
     this.analyticsService.setAutoSaveInterval(value);
   }
-}
+}*/
